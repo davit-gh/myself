@@ -1,0 +1,163 @@
+{% extends "base.html" %}
+{% load staticfiles mezzanine_tags get_blurbs widget_tweaks %}
+
+
+{% block about %}
+        <section id="about" class="home-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    
+                        <div class="section-heading text-center">
+                        <div class="wow bounceInDown" data-wow-delay="0.2s">
+                            <h2>My name is Alice</h2>
+                        </div>
+                        <p class="wow bounceInUp" data-wow-delay="0.3s">I'm 28 years old from a village near Alpen mountain and I'm a spinster :(</p>
+                        </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                
+                    <img src="{% static 'img/img1.jpg' %}" class="img-responsive img-rounded" alt="" />
+                </div>      
+                <div class="col-md-6">
+                    <p><strong>You'll fall in love with me at the first sight</strong></p>
+                    <p>
+                    Lorem ipsum dolor sit amet, ei purto tamquam ceteros his, eos in graece posidonium. 
+                    Ex nullam vidisse salutatus sed, ea persius phaedrum tincidunt vel. Option virtute nonumes ne est. 
+                    Id homero expetendis eam, dictas rationibus ut has.
+                    </p>
+                    <blockquote>
+                    Pri pertinacia elaboraret te, an eirmod delicatissimi nec. Eu liber quodsi maiorum mei. 
+                    Civibus perfecto rationibus id his, est noster nostrud aliquando at.
+                    </blockquote>
+                    <a href="#gallery" class="btn btn-skin btn-lg btn-scroll">See my photos</a>
+                </div>
+            </div>      
+        </div>
+    </section>
+
+{% endblock about %}
+
+{% block content %}
+{% endblock %}
+
+{% block separator %}
+    <section id="separator" class="home-section parallax text-center" data-stellar-background-ratio="0.5">
+        
+        <div class="container">
+            {% get_iconblurbs as blurbs %}
+            <div class="row">
+                {% for blurb in blurbs %}
+                    <div class="col-xs-6 col-sm-3 col-md-3">
+                        <div class="align-center txt-shadow">
+                            <div class="icon">
+                                <i class="{{ blurb.classname }}"></i>
+                            </div>
+                        <span class="color-white">{{ blurb.text }}</span>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>      
+        </div>
+    </section>
+
+{% endblock separator %}
+
+{% block gallery %}
+        <section id="gallery" class="home-section text-center bg-gray">
+
+            <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <div class="wow bounceInDown" data-wow-delay="0.4s">
+                    <div class="section-heading">
+                        <h2>My photo gallery</h2>
+                        <p>Take a look at my personal moment, enjoy</p>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12" >
+                    <div class="wow bounceInUp" data-wow-delay="0.4s">
+                    {% get_project_portitem as portitem %}
+                    <div id="owl-works" class="owl-carousel">
+                        {% for item in portitem.images.all %}
+                            <div class="item"><a href="{{ MEDIA_URL }}{{ item.file }}" title="{{ item.desc }}" data-lightbox-gallery="gallery1"><img src="{{ MEDIA_URL }}{{ item.file }}" class="img-responsive" alt="img"></a></div>
+                        {% endfor %}
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock gallery %}
+
+{% block contact %}
+        <section id="contact" class="home-section text-center">
+        <div class="heading-contact">
+            <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-offset-2">
+                    
+                    <div class="section-heading">
+                    <div class="wow bounceInDown" data-wow-delay="0.4s">
+                    <h2>Email or phone are welcome</h2>
+                    </div>
+                    <p class="wow lightSpeedIn" data-wow-delay="0.3s">Gentleman, introduce your self and get in touch with me privately</p>
+                    </div>
+                    
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-8 col-md-offset-2">
+                    <div class="form-wrapper marginbot-50">
+                            {% get_contact_form as form %}
+                            <h4>Send us a Message</h4>
+                            {% if request.GET.sent %}
+                                {{ page.form.response|richtext_filters|safe }}
+                            {% else %}
+                                <form id="contact-form" method="post">
+                                    {% csrf_token %}
+                                            {% for hidden in form.hidden_fields %}
+                                                {{hidden}}
+                                            {% endfor %}
+                                      <fieldset>
+                                        {% for vis in form.visible_fields %}
+                                            <div class="form-group">
+                                              {{ vis.label_tag }}
+                                              {% for err in vis.errors %}<span style="color:red">{{ err }}</span>{% endfor %}
+                                                {% render_field vis class="form-control" required="required" %}
+                                            </div>
+                                        {% endfor %}
+                                        
+                                        <div class="buttons-wrapper"><button class="button">Send</button></div>
+                                      </fieldset>
+                                </form>
+                            {% endif %}
+                    </div>
+                    <div class="text-center">
+                            <p class="lead"><i class="fa fa-phone"></i> Call me +1 888 9796 88</p>
+                    </div>
+                </div>
+
+            </div>  
+
+        </div>
+    </section>
+
+{% endblock contact %}
