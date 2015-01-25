@@ -10,9 +10,9 @@
                     
                         <div class="section-heading text-center">
                         <div class="wow bounceInDown" data-wow-delay="0.2s">
-                            <h2>My name is Alice</h2>
+                            <h2>My name is Davit</h2>
                         </div>
-                        <p class="wow bounceInUp" data-wow-delay="0.3s">I'm 28 years old from a village near Alpen mountain and I'm a spinster :(</p>
+                        <p class="wow bounceInUp" data-wow-delay="0.3s">I'm 27 years old web-developer from Yerevan, Armenia.</p>
                         </div>
                     
                 </div>
@@ -21,22 +21,17 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div id="img-wrapper" class="col-md-6">
                 
-                    <img src="{% static 'img/img1.jpg' %}" class="img-responsive img-rounded" alt="" />
+                    <img id="me" src="{% static 'img/DSC_00701.jpg' %}" class="img-responsive img-rounded" alt="" />
                 </div>      
                 <div class="col-md-6">
-                    <p><strong>You'll fall in love with me at the first sight</strong></p>
+                    <p><strong>A little bit about myself.</strong></p>
                     <p>
-                    Lorem ipsum dolor sit amet, ei purto tamquam ceteros his, eos in graece posidonium. 
-                    Ex nullam vidisse salutatus sed, ea persius phaedrum tincidunt vel. Option virtute nonumes ne est. 
-                    Id homero expetendis eam, dictas rationibus ut has.
-                    </p>
-                    <blockquote>
-                    Pri pertinacia elaboraret te, an eirmod delicatissimi nec. Eu liber quodsi maiorum mei. 
-                    Civibus perfecto rationibus id his, est noster nostrud aliquando at.
-                    </blockquote>
-                    <a href="#gallery" class="btn btn-skin btn-lg btn-scroll">See my photos</a>
+                    I enjoy programming in python and Django was a natural choice for me. I have more than 2 years of experience making beautiful websites. I use Twitter Bootstrap 3 and jQuery to make responsive and interactive websites with beautifully animated sliders, blogs, galleries and pretty much every feature that my clients might need.</p>  
+                    <p>Below you can find examples of my previous works</p>
+                    
+                    <a href="#gallery" class="btn btn-skin btn-lg btn-scroll">See my works</a>
                 </div>
             </div>      
         </div>
@@ -77,8 +72,8 @@
                 <div class="col-lg-8 col-lg-offset-2">
                     <div class="wow bounceInDown" data-wow-delay="0.4s">
                     <div class="section-heading">
-                        <h2>My photo gallery</h2>
-                        <p>Take a look at my personal moment, enjoy</p>
+                        <h2>My Portfolio</h2>
+                        <p>These are some websites I made before.</p>
                     </div>
                     </div>
                 </div>
@@ -92,7 +87,7 @@
                     {% get_project_portitem as portitem %}
                     <div id="owl-works" class="owl-carousel">
                         {% for item in portitem.images.all %}
-                            <div class="item"><a href="{{ MEDIA_URL }}{{ item.file }}" title="{{ item.desc }}" data-lightbox-gallery="gallery1"><img src="{{ MEDIA_URL }}{{ item.file }}" class="img-responsive" alt="img"></a></div>
+                            <div class="item"><a href="{{ item.title }}" title="{{ item.desc }}" data-lightbox-gallery="gallery1"><img src="{{ MEDIA_URL }}{{ item.file }}" class="img-responsive" alt="img"></a></div>
                         {% endfor %}
                     </div>
                     </div>
@@ -104,7 +99,7 @@
 {% endblock gallery %}
 
 {% block contact %}
-        <section id="contact" class="home-section text-center">
+        <section id="contact" class="section-heading text-center">
         <div class="heading-contact">
             <div class="container">
             <div class="row">
@@ -112,9 +107,9 @@
                     
                     <div class="section-heading">
                     <div class="wow bounceInDown" data-wow-delay="0.4s">
-                    <h2>Email or phone are welcome</h2>
+                    <h2>Hire me!</h2>
                     </div>
-                    <p class="wow lightSpeedIn" data-wow-delay="0.3s">Gentleman, introduce your self and get in touch with me privately</p>
+                    <p class="wow lightSpeedIn" data-wow-delay="0.3s">Contact me if you need a beautiful personal or corporate website.</p>
                     </div>
                     
                 </div>
@@ -127,11 +122,11 @@
                 <div class="col-lg-8 col-md-offset-2">
                     <div class="form-wrapper marginbot-50">
                             {% get_contact_form as form %}
-                            <h4>Send us a Message</h4>
+                            <h4>Send me a Message</h4>
                             {% if request.GET.sent %}
                                 {{ page.form.response|richtext_filters|safe }}
                             {% else %}
-                                <form id="contact-form" method="post">
+                                <form id="contact-form" method="post" action="{% url 'contactus' %}">
                                     {% csrf_token %}
                                             {% for hidden in form.hidden_fields %}
                                                 {{hidden}}
@@ -151,7 +146,7 @@
                             {% endif %}
                     </div>
                     <div class="text-center">
-                            <p class="lead"><i class="fa fa-phone"></i> Call me +1 888 9796 88</p>
+                            <p class="lead"><i class="fa fa-phone"></i> Call me +374 55 433 423</p>
                     </div>
                 </div>
 

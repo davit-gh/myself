@@ -25,8 +25,10 @@ h4,
 h5,
 h6 {
     margin: 0 0 30px;
-    font-family: 'Varela Round', sans-serif;
-    font-weight: 400;
+    font-family: 'Ubuntu', sans-serif;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 4vw;
     color: #444;
 }
 
@@ -248,7 +250,7 @@ hr {
 ============================ */
 
 .home-section {
-    padding-top: 120px;
+    padding-top: 80px;
     padding-bottom: 110px;
 	display:block;
     position:relative;
@@ -299,21 +301,22 @@ hr {
 .intro {
 	width:100%;
 	position:relative;	
-	background: url(../img/bg1.jpg) no-repeat top center;
+	background: url(../img/DSC_00523i.jpg) no-repeat top center;
 	background-size: cover;
 }
 
 #intro.intro {
-	padding:200px 0 150px 0;
+	padding:350px 0 350px 0;
 }
 
 .intro .slogan {
-	text-align: center;
-
+	float: right;
+  width: 40%
 }
 
 .intro .page-scroll {
-	text-align: center;
+	text-align: right;
+  margin-top: 120px;
 }
 
 
@@ -394,7 +397,7 @@ form#contact-form .form-group label {
 }
 form#contact-form input,form#contact-form select,form#contact-form textarea {
 	border-radius: 4px;
-	border: 1px solid #eee;
+	border: 1px solid #777;
   -webkit-box-shadow: none;
           box-shadow:  none;
 	font-size: 16px;
@@ -429,7 +432,7 @@ form#contact-form input:focus,form#contact-form select:focus,form#contact-form t
 footer {
 	text-align: center;
 	padding: 50px 0 30px;
-	
+	background-color: #322A8A !important;
 }
 
 footer p {
@@ -639,4 +642,41 @@ a.btn:hover {
 		font-size: 20px;
 	}
 	
+}
+
+div.slogan h3{
+  margin: 0;
+}
+
+div#angle{
+  text-align: center;
+}
+
+
+#img-wrapper {
+    display: inline-block;
+    overflow: hidden;    
+    height: 330px;
+}
+
+#img-wrapper img {
+    -webkit-transition: all .2s ease;
+    -moz-transition: all .2s ease;
+    -ms-transition: all .2s ease;
+    -o-transition: all .2s ease;
+    transition: all .2s ease;
+    
+    vertical-align: middle;
+}
+
+#img-wrapper img:hover {
+    -webkit-transform:scale(1.5); /* Safari and Chrome */
+    -moz-transform:scale(1.5); /* Firefox */
+    -ms-transform:scale(1.5); /* IE 9 */
+    -o-transform:scale(1.5); /* Opera */
+    transform:scale(1.5);
+}
+
+div.messages {
+  margin-top: -320px;
 }
